@@ -14,18 +14,18 @@ import javax.sql.DataSource;
 @Configuration
 public class JdbcRepositoryTestConfig {
 
-    @Bean
-    public PlatformTransactionManager transactionManager() {
-        return new DataSourceTransactionManager(dataSource());
-    }
-
-    @Bean
-    public DataSource dataSource() {
-        return new EmbeddedDatabaseBuilder().
-//                addScript("schema.sql").
-                setType(EmbeddedDatabaseType.HSQL).
-                build();
-    }
+//    @Bean
+//    public PlatformTransactionManager transactionManager() {
+//        return new DataSourceTransactionManager(dataSource());
+//    }
+//
+//    @Bean
+//    public DataSource dataSource() {
+//        return new EmbeddedDatabaseBuilder().
+////                addScript("schema.sql").
+//                setType(EmbeddedDatabaseType.HSQL).
+//                build();
+//    }
 
 
 }
