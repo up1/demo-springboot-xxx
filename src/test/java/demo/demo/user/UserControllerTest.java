@@ -19,6 +19,8 @@ import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.context.support.AnnotationConfigContextLoader;
 import org.springframework.test.web.servlet.MockMvc;
 
+import java.util.List;
+
 import static org.junit.Assert.assertEquals;
 import static org.mockito.BDDMockito.given;
 import static org.springframework.boot.test.context.SpringBootTest.*;
@@ -56,7 +58,17 @@ public class UserControllerTest {
                 new HttpEntity<User>(new User("test", "test")),
                 User.class);
         assertEquals(200, response.getStatusCode().value());
-        assertEquals("test", response.getBody().getFirstname());
+        assertEquals("testCalled", response.getBody().getFirstname());
+    }
+
+    @Test
+    public void success3() throws Exception {
+        ResponseEntity<List> response
+                = restTemplate.postForEntity("/user/new/list",
+                new HttpEntity<User>(new User("test", "test")),
+                List.class);
+        assertEquals(200, response.getStatusCode().value());
+        assertEquals(1, response.getBody().size());
     }
 
 
