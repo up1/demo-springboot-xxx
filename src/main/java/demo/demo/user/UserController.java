@@ -13,6 +13,10 @@ public class UserController {
     @Autowired
     private UserRepository userRepository;
 
+    public UserController(UserRepository userRepository) {
+        this.userRepository = userRepository;
+    }
+
     @GetMapping("/user/{userId}")
     public User getUser(@PathVariable int userId) {
         return userRepository.getUserById(userId);
