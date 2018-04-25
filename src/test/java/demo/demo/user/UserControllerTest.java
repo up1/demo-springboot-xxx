@@ -11,6 +11,7 @@ import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.boot.test.web.client.TestRestTemplate;
+import org.springframework.http.HttpEntity;
 import org.springframework.http.ResponseEntity;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.test.context.ContextConfiguration;
@@ -46,5 +47,17 @@ public class UserControllerTest {
         assertEquals("Somkiat Mock", response.getBody().getFirstname());
         assertEquals("Pui Mock", response.getBody().getLastname());
     }
+
+
+    @Test
+    public void success2() throws Exception {
+        ResponseEntity<User> response
+                = restTemplate.postForEntity("/user/new",
+                new HttpEntity<User>(new User("test", "test")),
+                User.class);
+        assertEquals(200, response.getStatusCode().value());
+        assertEquals("test", response.getBody().getFirstname());
+    }
+
 
 }
